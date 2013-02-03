@@ -22,16 +22,38 @@ gem 'paperclip_rotation'
 Dependencies:
 * Paperclip
 
-Usage
------
+Quick Start
+-----------
+
+In your model:
 
 ```ruby
   class User < ActiveRecord::Base
     has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   end
-  user = User.new
-  user.image = 'image_path'
-  user.image.rotate!
+```
+
+In your migrations:
+
+```ruby
+class AddAvatarRotationToUsers < ActiveRecord::Migration
+  def self.up
+    add_column :users, :avatar, :integer
+  end
+
+  def self.down
+    remove_column :users, :avatar
+  end
+end
+```
+
+(Or you can use migration generator: rails generate paperclip_rotation user avatar)
+
+In your code:
+
+```ruby
+@user = User.find( params[:id] )
+@user.image.rotate!
 ```
 
 Contributing
