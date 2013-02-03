@@ -38,11 +38,11 @@ In your migrations:
 ```ruby
 class AddAvatarRotationToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :avatar, :integer
+    add_column :users, :avatar_rotated_degrees, :integer
   end
 
   def self.down
-    remove_column :users, :avatar
+    remove_column :users, :avatar_rotated_degrees
   end
 end
 ```
